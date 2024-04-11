@@ -1,0 +1,33 @@
+version: "3.9"
+
+services:
+  api:
+    build: api/
+    container_name: gagarin-api
+    ports:
+      - "8000:8000"
+    restart: unless-stopped
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+
+  st-app:
+    build: streamlit-app/
+    container_name: gagarin-streamlit-web-app
+    ports:
+      - "8501:8501"
+    restart: unless-stopped
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    depends_on:
+      - api
+
+  web-app:
+    build: web-app/
+    container_name: gagarin-web-app
+    ports:
+      - "5000:5000"
+    restart: unless-stopped
+    depends_on:
+      - api
+    extra_hosts:
+      - "host.docker.internal:host-gateway"

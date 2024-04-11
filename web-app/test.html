@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Пример страницы с навигационной панелью и формой</title>
+<style>
+    body {
+        margin: 0;
+        padding: 0 20%;
+        font-family: Arial, sans-serif;
+    }
+
+    header {
+        color: #333;
+        text-align: center;
+        padding: 10px 0;
+    }
+
+    nav {
+        background-color: #ccc;
+        padding: 10px;
+        border-radius: 5px;
+        margin-bottom: 20px;
+    }
+
+    nav a {
+        color: #000;
+        text-decoration: none;
+        padding: 5px;
+    }
+
+    nav a:hover {
+        color: coral;
+    }
+
+    .content {
+        background-color: #ccc;
+        border-radius: 10px;
+        padding: 20px;
+        margin-bottom: 20px;
+    }
+
+    form {
+        margin: 0 auto;
+        max-width: 300px;
+        padding: 10px;
+        background-color: #fff;
+        border-radius: 5px;
+    }
+
+    input[type="file"] {
+        background-color: coral;
+        color: #fff;
+        padding: 5px 10px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    {#input[type="file"] {#}
+    {#    opacity: 0;#}
+    {#    position: absolute;#}
+    {#    width: 0;#}
+    {#    height: 0;#}
+
+label {
+        background-color: coral;
+        color: #fff;
+        padding: 5px 10px;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    input[type="file"]:hover {
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+    }
+
+    input[type="file"]::file-selector-button {
+        color: #fff;
+    }
+
+    #submit-btn {
+        display: none;
+    }
+
+</style>
+</head>
+
+<body>
+    <nav>
+        <a href="#">Ссылка 1</a>
+        <a href="#">Ссылка 2</a>
+        <a href="#">Ссылка 3</a>
+    </nav>
+
+    <header>
+        <h1>Заголовок страницы</h1>
+    </header>
+
+    <div class="content">
+        <form>
+            <label for="file" id="file-label">Загрузите файл</label>
+            <input type="file" id="file" name="file">
+            <p>
+                <img id="preview" style="max-width: 100%; display: none;" alt="Картинка">
+            </p>
+            <input type="submit" id="submit-btn" value="Отправить">
+        </form>
+    </div>
+
+    <script>
+        const fileInput = document.getElementById('file');
+        const imagePreview = document.getElementById('preview');
+        const submitButton = document.getElementById('submit-btn');
+
+        fileInput.addEventListener('change', function() {
+            const file = fileInput.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    imagePreview.src = e.target.result;
+                    imagePreview.style.display = 'block';
+                    submitButton.style.display = 'block';
+                }
+                reader.readAsDataURL(file);
+            }
+        });
+    </script>
+
+</body>
+</html>

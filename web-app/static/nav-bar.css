@@ -1,0 +1,9 @@
+.nav-bar-text {
+    color: black !important;
+    font-stretch: 400% !important;
+    font-size: 1em;
+    margin: 0 1em;
+}
+a:hover {
+    color: coral !important;
+}
