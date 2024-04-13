@@ -27,6 +27,7 @@ async def detect(file: UploadFile):
 
 @app.post("/api/detect_extended")
 async def detect_extended(file: UploadFile):
+
 	write_file(file)
 	image = cv2.imread(file.filename)
 

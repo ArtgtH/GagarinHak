@@ -14,13 +14,11 @@ def get_form():
 def full_res():
 	file = request.files['file']
 
-	answer = requests.post('http://localhost:8000/api/detect_extended', files={'file': file})
-
-	print(answer.json())
+	answer = requests.post('http://api:8000/api/detect_extended', files={'file': file})
 
 	context = {'answer': answer.text}
 
-	return render_template('result.html', context=context)
+	return render_template('result.html', result=context)
 
 
 @app.route('/res', methods=['POST'])
@@ -28,9 +26,7 @@ def res():
 
 	file = request.files['file']
 
-	answer = requests.post('http://localhost:8000/api/detect', files={'file': file})
-
-	print(answer.json())
+	answer = requests.post('http://api:8000/api/detect', files={'file': file})
 
 	context = {'answer': answer.text}
 
