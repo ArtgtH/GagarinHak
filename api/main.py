@@ -16,13 +16,21 @@ def img_test(img):
 	print(img.shape)
 
 
-@app.post("/api/model")
-async def root(file: UploadFile):
+@app.post("/api/detect")
+async def detect(file: UploadFile):
 
 	write_file(file)
 	image = cv2.imread(file.filename)
 
-	return {"message": "success"}
+	return {"message": "success", "mode": "classic"}
+
+
+@app.post("/api/detect_extended")
+async def detect_extended(file: UploadFile):
+	write_file(file)
+	image = cv2.imread(file.filename)
+
+	return {"message": "success", "mode": "extended"}
 
 
 if __name__ == '__main__':

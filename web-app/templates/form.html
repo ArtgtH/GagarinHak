@@ -7,48 +7,36 @@
 
 
 {% block body %}
-	<h1 style="margin-bottom: 2em; text-align: center">Страница загрузки файла</h1>
+	<h1 style="margin-bottom: 2em; margin-top: 2em; text-align: center">Страница загрузки файла</h1>
 
-    <div class="content-block">
-    <form action="/" method="post" enctype="multipart/form-data" class="rounded-box" id="form">
-            <input type="file" name="file" id="fileInput" onchange="updateFileName()">
-            <span class="input-file-text" id="fileName">Файл не загружен</span>
-        <p>
-            <img id="preview" alt="Картинка">
-        </p>
-        <input type="submit" value="Отправить" id="submit-btn">
-    </form>
-</div>
-
+    <div class="container content-block">
+        <form class="upload-form" method="post" enctype="multipart/form-data" id="form">
+            <h1>Upload Image</h1>
+            <label for="image">Choose an image:</label>
+            <input type="file" name="file" id="image" accept="image/*" required>
+            <div class="image-preview"></div>
+            <button type="submit" formaction="/res">Отправить</button>
+            <button type="submit" formaction="/full_res">Отправить</button>
+        </form>
+    </div>
 
     <script>
-        function updateFileName() {
-            const fileInput = document.getElementById('fileInput');
-            const fileNameSpan = document.getElementById('fileName');
+      const imageInput = document.querySelector('#image');
+      const imagePreview = document.querySelector('.image-preview');
 
-            if (fileInput.files.length > 0) {
-                fileNameSpan.textContent = 'Загружен файл: ' + fileInput.files[0].name;
-            } else {
-                fileNameSpan.textContent = 'Файл не загружен';
-            }
-        }
+      imageInput.addEventListener('change', function() {
+        const file = this.files[0];
+        const reader = new FileReader();
 
-        const fileInput = document.getElementById('file');
-        const imagePreview = document.getElementById('preview');
-        const submitButton = document.getElementById('submit-btn');
-
-        fileInput.addEventListener('change', function() {
-            const file = fileInput.files[0];
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    imagePreview.src = e.target.result;
-                    imagePreview.style.display = 'block';
-                    submitButton.style.display = 'block';
-                }
-                reader.readAsDataURL(file);
-            }
+        reader.addEventListener('load', function() {
+          const img = document.createElement('img');
+          img.src = reader.result;
+          imagePreview.innerHTML = '';
+          imagePreview.appendChild(img);
         });
+
+        reader.readAsDataURL(file);
+      });
     </script>
 
 {% endblock %}
