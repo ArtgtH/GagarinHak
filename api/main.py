@@ -1,6 +1,7 @@
 from fastapi import FastAPI, File, UploadFile
+from PIL import Image
 
-import cv2
+from classificator import get_class_and_proba
 
 
 app = FastAPI()
@@ -18,20 +19,20 @@ def img_test(img):
 
 @app.post("/api/detect")
 async def detect(file: UploadFile):
-
 	write_file(file)
-	image = cv2.imread(file.filename)
+	image = Image.open(file.filename).convert('RGB')
+	res = get_class_and_proba(image)
 
-	return {"message": "success", "mode": "classic"}
+	return {"message": "success", "result": res}
 
 
 @app.post("/api/detect_extended")
 async def detect_extended(file: UploadFile):
-
 	write_file(file)
-	image = cv2.imread(file.filename)
+	image = Image.open(file.filename).convert('RGB')
+	res = get_class_and_proba(image)
 
-	return {"message": "success", "mode": "extended"}
+	return {"message": "success", "result": res}
 
 
 if __name__ == '__main__':

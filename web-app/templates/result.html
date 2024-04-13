@@ -6,9 +6,15 @@
 
 {% block body %}
     <h1 style="margin-bottom: 2em; text-align: center">Страница представления результата работы модели</h1>
-    <div class="content-block">
-        <p>
-            {{ result }}
-        </p>
+    <div class="result">
+      <h2 class="result__title">Результат:</h2>
+      <div class="result__item">
+        <span class="result__item-label">Тип документа:</span>
+        <span class="result__item-value">{{ doc_type }}</span>
+      </div>
+      <div class="result__item">
+        <span class="result__item-label">Точность оценки:</span>
+        <span class="result__item-value">{{ score }}</span>
+      </div>
     </div>
 {% endblock %}

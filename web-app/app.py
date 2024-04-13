@@ -16,9 +16,12 @@ def full_res():
 
 	answer = requests.post('http://api:8000/api/detect_extended', files={'file': file})
 
-	context = {'answer': answer.text}
+	answer = answer.json().get('result')
 
-	return render_template('result.html', result=context)
+	doc_type = answer[0]
+	score = answer[1]
+
+	return render_template('result.html', score=score, doc_type=doc_type)
 
 
 @app.route('/res', methods=['POST'])
@@ -28,9 +31,12 @@ def res():
 
 	answer = requests.post('http://api:8000/api/detect', files={'file': file})
 
-	context = {'answer': answer.text}
+	answer = answer.json().get('result')
 
-	return render_template('result.html', result=context)
+	doc_type = answer[0]
+	score = answer[1]
+
+	return render_template('result.html', score=score, doc_type=doc_type)
 
 
 @app.route('/about', methods=['GET'])
