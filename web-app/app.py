@@ -14,7 +14,7 @@ def get_form():
 def full_res():
 	file = request.files['file']
 
-	answer = requests.post('http://localhost:8000/api/detect', files={'file': file})
+	answer = requests.post('http://localhost:8000/api/detect_extended', files={'file': file})
 
 	print(answer.json())
 
