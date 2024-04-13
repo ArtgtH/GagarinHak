@@ -11,17 +11,21 @@
 
     <div class="container content-block">
         <form class="upload-form" method="post" enctype="multipart/form-data" id="form">
-            <h1>Upload Image</h1>
-            <label for="image">Choose an image:</label>
-            <input type="file" name="file" id="image" accept="image/*" required>
+            <h1>Загрузка изображения</h1>
+            <div class="input__wrapper">
+               <input name="file" type="file" id="input__file" class="input input__file" required>
+               <label for="input__file" class="input__file-button">
+                  <span class="input__file-icon-wrapper"><img class="input__file-icon" src="{{ url_for('static', filename='img.png', v='1') }}" alt="Выбрать файл" width="25"></span>
+               </label>
+            </div>
             <div class="image-preview"></div>
-            <button type="submit" formaction="/res">Отправить</button>
-            <button type="submit" formaction="/full_res">Отправить</button>
+            <button type="submit" formaction="/res">Классический скан</button>
+            <button type="submit" formaction="/full_res">Расширенный скан</button>
         </form>
     </div>
 
     <script>
-      const imageInput = document.querySelector('#image');
+      const imageInput = document.querySelector('#input__file');
       const imagePreview = document.querySelector('.image-preview');
 
       imageInput.addEventListener('change', function() {
