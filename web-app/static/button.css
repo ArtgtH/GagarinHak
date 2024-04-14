@@ -35,28 +35,6 @@
   font-size: 1rem;
 }
 
-/*.input__file-button {*/
-/*  border-radius: 10em;*/
-/*  width: 100%;*/
-/*  max-width: 290px;*/
-/*  height: 60px;*/
-/*  background: #4895EF;*/
-/*  color: #fff;*/
-/*  font-size: 1.125rem;*/
-/*  font-weight: 700;*/
-/*  display: -webkit-box;*/
-/*  display: -ms-flexbox;*/
-/*  display: flex;*/
-/*  -webkit-box-align: center;*/
-/*      -ms-flex-align: center;*/
-/*          align-items: center;*/
-/*  -webkit-box-pack: center;*/
-/*      -ms-flex-pack: center;*/
-/*          justify-content: center;*/
-/*  cursor: pointer;*/
-/*  margin: 0 auto;*/
-/*}*/
-
 
 .input__file-button {
   border-radius: 10em;
